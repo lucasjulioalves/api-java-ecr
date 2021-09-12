@@ -7,7 +7,7 @@ phases:
     commands:
       - echo Entering install phase...
       - echo Updating gradle
-      - apt-get update gradle
+      - apt-get install gradle
   build:
     commands:
       - echo bulding using Gradle on `date`
