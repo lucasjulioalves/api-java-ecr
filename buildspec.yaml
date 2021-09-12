@@ -5,7 +5,7 @@ phases:
     runtime-versions:
       java: corretto8
     commands:
-      - sudo add-apt-repository ppa:cwchien/gradle
+      - add-apt-repository ppa:cwchien/gradle
       - apt-get update
       - apt-get install gradle
   build:
