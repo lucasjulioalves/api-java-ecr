@@ -20,7 +20,6 @@ phases:
     commands:
       - echo the region is $AWS_REGION
       - echo docker image with tag $IMAGE_TAG will be sent to $ECR_REPO
-      - $(aws ecr get-login-password --region $AWS_REGION)
       - docker push $ECR_REPO:latest
       - docker push $ECR_REPO:$IMAGE_TAG
 artifacts:
