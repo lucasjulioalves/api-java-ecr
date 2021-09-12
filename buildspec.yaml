@@ -2,7 +2,7 @@ version: 0.2
 
 phases:
   install:
-    runtime-version
+    runtime-versions:
       java: corretto8
     commands:
       - add-apt-repository ppa:cwchien/gradle
@@ -14,7 +14,7 @@ phases:
       - gradle build
       - echo building docker image
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - docker build -t $ECR_REPO:latest
+      - docker build -t $ECR_REPO:latest .
       - docker tag $ECR_REPO:latest $ECR_REPO:$IMAGE_TAG
   post_build: 
     commands: 
