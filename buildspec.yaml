@@ -1,0 +1,16 @@
+version: 0.1
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+    commands:
+      - echo Entering install phase...
+      - echo Nothing to build now
+  build:
+    commands:
+      - echo bulding using Gradle on `date`
+      - gradle build
+artifacts:
+  files:
+    - 'build/libs/*.jar'
