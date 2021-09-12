@@ -2,7 +2,7 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
+    runtime-version
       java: corretto8
     commands:
       - add-apt-repository ppa:cwchien/gradle
@@ -10,8 +10,17 @@ phases:
       - apt-get install gradle -y
   build:
     commands:
-      - echo bulding using Gradle on `date`
+      - echo building using Gradle on `date`
       - gradle build
+      - echo building docker image
+      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - docker build -t $ECR_REPO:latest
+      - docker tag $ECR_REPO:latest $ECR_REPO:$IMAGE_TAG
+  post_build: 
+    commands: 
+      - $(aws ecr get-login --no-include-email --region $AWS_REGION)
+      - docker push $ECR_REPO:latest
+      - docker push $ECR_REPO:$IMAGE_TAG
 artifacts:
   files:
     - 'build/libs/*.jar'
