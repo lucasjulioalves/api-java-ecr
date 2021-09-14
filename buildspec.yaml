@@ -23,7 +23,7 @@ phases:
       - echo the region is $AWS_REGION
       - echo docker image with tag $IMAGE_TAG will be sent to $ECR_REPO
       - docker push $ECR_REPO:$IMAGE_TAG
-      - printf '[{"name":"custom-service","imageUri":"%s"}]' $ECR_REPO:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"custom","imageUri":"%s"}]' $ECR_REPO:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json
