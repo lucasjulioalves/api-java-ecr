@@ -9,7 +9,7 @@ phases:
   pre_build:
     commands: 
       - echo login to ECR
-      - aws ecr get-login-password --region $AWS_REGION
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_USER_ID.dkr.ecr.$AWS_REGION.amazonaws.com
   build:
     commands:
       - echo building using Gradle on `date`
