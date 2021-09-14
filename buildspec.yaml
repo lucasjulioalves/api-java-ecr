@@ -16,7 +16,7 @@ phases:
       - sh gradlew build
       - echo building docker image
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - docker build -t springboot-aps:latest .
+      - docker build -t $ECR_REPO_NAME:$IMAGE_TAG .
       - docker tag $ECR_REPO_NAME:$IMAGE_TAG $ECR_REPO:$IMAGE_TAG
   post_build: 
     commands:
